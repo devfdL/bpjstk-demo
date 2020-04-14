@@ -1,0 +1,38 @@
+
+<nav class="navbar">
+		<div class="container">
+			<a class="brand" >
+			<h1>{{webname}}</h1>
+			</a>
+			
+				<ul id="menu">
+{% if user.is_authenticated %}
+				<div class="menu">
+    				<li class="nav-item">
+						<a class="nav-link" id="homelink" href="/">
+							Home
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a href="{% url 'logout' %}" class="nav-link">logout</a>
+					</li>	
+{% else %}
+  					<li class="nav-item">
+  						<a href="{% url 'login' %}" class="nav-link">
+						  Login
+						</a>
+					</li>
+
+					<li class="nav-item">
+  						<a href="register" class="nav-link">
+						  Signup
+						</a>
+					</li>
+{% endif %}
+				</ul>
+				</div>
+			
+
+		</div>
+</nav>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block Title %}
+payment
+{% endblock Title %}
+
+{% block contents %}
+
+<!--<div class="topbar">
+  <h1><a href="/" id="brand-register">.rmndr</a></h1>
+</div> -->
+{% if user.is_authenticated %}
+<div class="topmenu">
+    <button onclick="leftmenu()" id="leftmenu"><a href="/"><i class="fas fa-angle-left" style="color: black"></i></a></button> 
+    <h1>{{judul}}</h1>
+</div>
+<div id="my_camera" style="position: relative; left: -100px; top: 50px"></div>
+<div class="regist-form" id="payment-form" style="position: fixed; top: 370px"> 
+    <form method="POST">
+        {% csrf_token %}
+        <input type=button value="" onClick="take_snapshot()" id="photo-btn">
+        <input type="text" id="facesign" name="facesign" value="-" style="display: none;"> 
+        <button type="submit" id="next-pay">Next</button>  
+    </form>
+</div>
+{% endif %}
+
+<script src="{% static 'webcamjs/webcam.min.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock contents %}

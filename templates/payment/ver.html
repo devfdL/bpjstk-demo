@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block Title %}
+payment
+{% endblock Title %}
+
+{% block contents %}
+
+<!--<div class="topbar">
+  <h1><a href="/" id="brand-register">.rmndr</a></h1>
+</div> -->
+{% if user.is_authenticated %}
+<div class="topmenu">
+    <button onclick="leftmenu()" id="leftmenu"><a href="/"><i class="fas fa-angle-left" style="color: black"></i></a></button> 
+    <h1>{{judul}}</h1>
+</div>
+<div class="regist-form" id="payment-form">
+    <form method="POST">
+        {% csrf_token %}
+        <p>Masukan Kode Verifikasi:</p>
+        {{form}}  
+        <p></p>
+    <button type="submit" id="regist_submit" class="send-btn">Next</button>  
+    </form>
+</div>
+{% endif %}
+
+
+{% endblock contents %}

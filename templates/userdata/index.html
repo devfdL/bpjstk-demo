@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block Title %}
+	{{webname}}-{{judul}}
+{% endblock Title %}
+
+{% block contents %}
+<h1 style="font-size: 25px; margin-bottom: 10px; top: 20px;left:40px; position: fixed;">User Data</h1>
+<div class="regist-form" style="margin-top: 60px;" >
+    
+    <form method="POST">
+        {% csrf_token %}
+        <p style="margin-bottom: 10px;">NIK:</p>
+        {{uform.nik}}
+        <p style="margin-bottom: 10px; margin-top: 20px;">hp_number:</p>
+        {{uform.hp_number}}
+        <p style="margin-bottom: 10px; margin-top: 20px;">Alamat:</p>
+        {{uform.alamat}}
+        <p style="margin-bottom: 10px; margin-top: 20px;">TTL:</p>
+        {{uform.ttl}}
+        <p style="margin-bottom: 10px; margin-top: 20px;">Pekerjaan:</p>
+        {{uform.pekerjaan}}
+        <p style="margin-bottom: 10px; margin-top: 20px;">user_signature:</p>
+        {{uform.user_signature}}
+        <p style="margin-bottom: 20px;"></p>
+    <button type="submit" id="regist_submit" class="send-btn">Done</button>    
+    </form>
+</div>
+{% endblock contents %}

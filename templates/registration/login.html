@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block Title %}
+	remainder-LogIn
+{% endblock Title %}
+
+{% block contents %}
+<nav class="navbar">
+	<div class="container">
+		<a class="brand" href="/">
+			<h1>.demo</h1>
+		</a>
+	</div>
+	<ul>
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+					Signup
+			</a>
+		</li>
+	</ul>
+</nav>
+<div class="login">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Username:</p>
+        {{form.username}}
+        <p>Password:</p>
+		{{form.password}}
+		<p></p>
+        <button type="submit" id="login-btn" class="send-btn">Login</button>
+    </form>
+</div>
+
+{% endblock contents %}
+

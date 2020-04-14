@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block Title %}
+	{{webname}}-{{judul}}
+{% endblock Title %}
+
+{% block contents %}
+
+
+<div class="desktop">
+    <h1 id="judul">{{judul}}</h1>
+    {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <div>
+        <h1>{{content}}</h1>
+      </div>
+
+    {% else %}
+      <p>You are not logged in</p>
+      <a href="{% url 'login' %}" class="send-btn">login</a>
+    {% endif %}
+</div>
+
+<div class="mobile">
+  <div class="header">
+    
+    {% if user.is_authenticated %}
+    <div class="topmenu">
+      <!--<button onclick="leftmenu()" id="leftmenu"><i class="glyphicon glyphicon-menu-hamburger"></i></button>-->
+      <h1>{{judul}}</h1>
+      <button onclick="rightmenu()" id="rightmenu"><i class="fa fa-user-circle"></i></button>
+      <!--<a href="{% url 'logout' %}" class="nav-link">logout</a>-->
+    </div>
+    
+    {% for udatas in udata %}
+    {% for uwallets in uwallet %}
+    {% if udatas.user_name == user.username %}
+    {% if uwallets.user_name == user.username %}
+      <div class="box">
+        <h1>{{user.username}}</h1>
+        <p id="nik">NIK: {{udatas.nik}}</p>
+        <a href="" id="topup" class="send-btn">Top up</a>
+        <img src="{% static 'img/logo1.png' %}" id="crdlogo">
+        <P style="text-align: right; margin-top: 25px;">Point: {{uwallets.point}}</P>
+        <h1 style="text-align: right; margin-top: -15px;" id="wallet">Rp. {{uwallets.wallet}}</h1>
+      </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    
+    <div class="bdr-pay">
+      <p>payment</p>
+    </div>
+
+    <a href="payment" id="buy" class="send-btn"><i class='fas fa-wallet'></i><br/>Pay</a>
+    <a href="payment" id="transfer" class="send-btn"><i class='fas fa-wallet'></i><br/>Transfer</a>
+
+    <div class="bdr-rcn">
+      <p>recent</p>
+    </div>
+
+    <div class="rcn-box">
+      {% for rcnpay in pay %}
+      {% if rcnpay.source == user.username %}
+      <div class="rcn-pay">
+        <h1>{{rcnpay.target}}</h1>
+        <p>{{rcnpay.date}}</p>
+        <h1 id="rcn-amount">-Rp.{{rcnpay.amount}}</h1>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    
+    <div id="leftbox">
+
+    </div>
+
+    <div id="rightbox">
+      <img src="{% static 'img/user.png' %}" id="userlogo">
+      {% for userd in udata %}
+      <div id="userleft">
+        <h1 >{{user.first_name}} {{user.last_name}}</h1>
+        <p>{{userd.hp_number}}</p>
+      </div>
+      {% endfor %}
+      <div id="settingleft">
+        <p >Setting</p>
+      </div>
+
+      <div id="logoutleft">
+        <a href="{% url 'logout' %}" class="nav-link">logout</a>
+      </div>
+      
+    </div>
+
+    <button onclick="leftclose()" id="leftclose"></button>
+    <button onclick="rightclose()" id="rightclose"></button>
+
+    {% else %}
+    <h1 id="judul">{{judul}}</h1>
+    <div class="not-logged">
+      <p style="margin-bottom: 10px;">You are not logged in</p>
+      <a href="{% url 'login' %}" id="register" class="send-btn">login</a>
+      <a href="register" id="register" class="send-btn">Join us</a>
+    </div>
+    <div class="foot">
+      <p>.demo created by <i class='fab fa-github' style="margin-right: 5px; margin-left: 10px;"></i>devfdL</p>
+    </div>
+    {% endif %}
+</div>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock contents %}

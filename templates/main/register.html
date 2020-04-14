@@ -1,0 +1,38 @@
+{% extends "main/header.html" %}
+{% load static %}
+
+
+{% block Title %}
+	Registration
+{% endblock Title %}
+
+{% block contents %}
+
+<!--<div class="topbar">
+  <h1><a href="/" id="brand-register">.rmndr</a></h1>
+</div> -->
+<div class="regist-form">
+    <form method="POST">
+        {% csrf_token %}
+        <p>First Name:</p>
+        {{form.first_name}}
+        <p>Last Name:</p>
+        {{form.last_name}}
+        <p>Email:</p>
+        {{form.email}}
+        <p>Username:</p>
+        {{form.username}}
+        <p>Password:</p>
+        {{form.password1}}
+        <p>Password confirmation:</p>
+        {{form.password2}}
+        <p></p>
+    <button type="submit" id="regist_submit" class="send-btn">Next</button> 
+    
+     
+    </form>
+    <a id="reg-log" href="/account/login/">LogIn</a>
+</div>
+
+
+{% endblock contents %}
